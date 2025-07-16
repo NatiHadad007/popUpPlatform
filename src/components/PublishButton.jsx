@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ToolContext } from "../context/ToolContext";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaRegPauseCircle } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
-import ExportShapeSvg from "../publishPop/exportShapeSvg";
 
 const PublishButton = () => {
-  const [exportTriggered, setExportTriggered] = useState(false);
-
-  const handlePublishClick = () => {
-    setExportTriggered(true);
+  const { deviceHTML, popupTrigger, timerPop, popupURLsArr } =
+    useContext(ToolContext);
+  const handlePublishClick = async () => {
+    const html = deviceHTML;
+    const allowedPages = popupURLsArr;
+    const serverUrl = "https://popupserverside.onrender.com";
+    const showOnExit = popupTrigger; // 'exit' or 'time'
+    const showOnTimer = popupTrigger === "time" ? timerPop : null;
+    console.log({ html, showOnExit, showOnTimer, allowedPages }); // ✅ Add this for debug
+    if (html) {
+      try {
+        // "https://popupserverside.onrender.com/device-html",
+        const res = await fetch(`${serverUrl}/device-html`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            html,
+            showOnExit,
+            showOnTimer,
+            allowedPages,
+          }),
+        });
+        console.log("HTML sent to server");
+      } catch (err) {
+        console.error("Failed to send HTML:", err);
+      }
+    }
   };
 
   return (
@@ -36,10 +61,6 @@ const PublishButton = () => {
           </li>
         </ul>
       </div>
-
-      {exportTriggered && (
-        <ExportShapeSvg onExportComplete={() => setExportTriggered(false)} />
-      )}
     </div>
   );
 };

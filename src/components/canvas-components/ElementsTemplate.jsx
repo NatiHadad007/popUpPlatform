@@ -3,32 +3,23 @@ import { FaShapes } from "react-icons/fa6";
 import { VscTextSize } from "react-icons/vsc";
 import { BsMenuButtonWideFill } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
-import { ToolContext } from "../../context/ToolContext";
 
-const ElementsTemplate = ({ navigate }) => {
-  const { addShape } = useContext(ToolContext);
-  const addShapeClick = (e, shape) => {
-    addShape(shape);
-  };
-
+const ElementsTemplate = ({ setActiveTool }) => {
   return (
     <div className="elementsContainer">
-      <div className="elementBlock" onClick={() => navigate("/shapes")}>
+      <div className="elementBlock" onClick={() => setActiveTool("shapes")}>
         <FaShapes className="elementicon" />
         <p className="elementText">Shapes</p>
       </div>
-      <div className="elementBlock" onClick={(e) => addShapeClick(e, "text")}>
+      <div className="elementBlock" onClick={(e) => setActiveTool("text")}>
         <VscTextSize className="elementicon" />
         <p className="elementText">Text</p>
       </div>
-      <div
-        className="elementBlock"
-        onClick={() => alert("Buttons tool coming soon!")}
-      >
+      <div className="elementBlock" onClick={() => setActiveTool("Buttons")}>
         <BsMenuButtonWideFill className="elementicon" />
         <p className="elementText">Buttons</p>
       </div>
-      <div className="elementBlock" onClick={() => navigate("/closeIcons")}>
+      <div className="elementBlock" onClick={() => setActiveTool("closeIcons")}>
         <IoIosCloseCircle className="elementicon" />
         <p className="elementText">Close Symbols</p>
       </div>

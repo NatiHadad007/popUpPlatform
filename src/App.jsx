@@ -1,29 +1,34 @@
-import React, { useContext } from "react";
+// App.jsx
+import React from "react";
 import "./App.css";
 import Nav from "./components/Nav";
 import MainCanvas from "./components/MainTable";
-import { ToolContext } from "./context/ToolContext";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ToolProvider from "./context/ToolContext";
-import CanvasSizeEditor from "./components/CanvasSizeEditor";
-function App() {
-  const clickOutSide = () => {
-    // console.log("clicked");
-    // shapeSelected(null);
-  };
+import ShapesHandler from "./components/ShapesHandler";
+import Activation from "./components/Activation";
 
+function App() {
   return (
-    <>
-      <ToolProvider>
-        <Router>
-          <div className="App" onClick={clickOutSide}>
-            <Nav />
-            <MainCanvas />
-            <CanvasSizeEditor />
-          </div>
-        </Router>
-      </ToolProvider>
-    </>
+    <ToolProvider>
+      <Router>
+        <div className="App">
+          <Nav />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <MainCanvas />
+                  <ShapesHandler />
+                </>
+              }
+            />
+            <Route path="/activation" element={<Activation />} />
+          </Routes>
+        </div>
+      </Router>
+    </ToolProvider>
   );
 }
 

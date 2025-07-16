@@ -6,19 +6,22 @@ import { ToolContext } from "../../context/ToolContext";
 const CloseTool = () => {
   const { addShape } = useContext(ToolContext);
 
-  const addShapeClick = (e, shape) => {
-    addShape(shape);
+  const addShapeClick = (e, shape, types) => {
+    addShape(shape, types);
   };
 
   return (
     <div className="toolContainer">
       <div
         className="elementBlock"
-        onClick={(e) => addShapeClick(e, "xInCircle")}
+        onClick={(e) => addShapeClick(e, "xInCircle", "closeTool")}
       >
         <IoIosCloseCircle className="closeIconTool" />
       </div>
-      <div className="elementBlock" onClick={(e) => addShapeClick(e, "xShape")}>
+      <div
+        className="elementBlock"
+        onClick={(e) => addShapeClick(e, "xShape", "closeTool")}
+      >
         {" "}
         <IoCloseSharp className="closeIconTool" />
       </div>

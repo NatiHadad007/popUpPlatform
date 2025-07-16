@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { FaElementor } from "react-icons/fa6";
+import { IoShapesOutline } from "react-icons/io5";
 import { TbBackground } from "react-icons/tb";
 import { TbScanPosition } from "react-icons/tb";
 import { FiUpload } from "react-icons/fi";
@@ -15,7 +15,7 @@ const EditorToolsBar = () => {
   const tools = [
     {
       id: "elements",
-      icon: <FaElementor className="editorIcon" />,
+      icon: <IoShapesOutline className="editorIcon" />,
       label: "Elements",
     },
     {

@@ -4,27 +4,27 @@ import { ToolContext } from "../../context/ToolContext";
 const ShapesTool = () => {
   const { addShape } = useContext(ToolContext);
 
-  const addShapeClick = (shape) => {
-    addShape(shape);
+  const addShapeClick = (shape, types) => {
+    addShape(shape, types);
   };
 
   return (
     <div className="toolContainer">
       <div
         className="elementBlock addSquare"
-        onClick={() => addShapeClick("square")}
+        onClick={() => addShapeClick("square", "shape")}
       ></div>
       <div
         className="elementBlock addCircle"
-        onClick={() => addShapeClick("circle")}
+        onClick={() => addShapeClick("circle", "shape")}
       ></div>
       <div
         className="elementBlock addTriangle"
-        onClick={() => addShapeClick("triangle")}
+        onClick={() => addShapeClick("triangle", "shape")}
       ></div>
       <div
         className="elementBlock addSquareBordered"
-        onClick={() => addShapeClick("squareBordered")}
+        onClick={() => addShapeClick("squareBordered", "shape")}
       ></div>
     </div>
   );

@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import EditorToolsBar from "./canvas-components/EditorToolsBar";
 import EditorToolSettings from "./EditorToolSettings";
-import { ToolProvider } from "../context/ToolContext";
 import ElementToolsBar from "./canvas-components/ElementToolsBar";
 import { EditorToolsBarSetting } from "./canvas-components/EditorToolsBarSetting";
 import CanvasSize from "./canvas-components/CanvasSize";

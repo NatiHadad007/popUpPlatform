@@ -1,50 +1,49 @@
-import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import ShapesTool from "./ShapesTool";
 import ElementsTemplate from "./ElementsTemplate";
 import { GrFormPreviousLink } from "react-icons/gr";
 import CloseTool from "./CloseTool";
+import TextTool from "../TextTool";
+import ButtonsTool from "./ButtonsTool";
 
 const Elements = () => {
-  const navigate = useNavigate();
+  const [activeTool, setActiveTool] = useState("template");
+  const goBack = () => setActiveTool("template");
 
   return (
     <div className="elementsWrapper">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <h4>Elements</h4>
-              <ElementsTemplate navigate={navigate} />
-            </div>
-          }
-        />
-        <Route
-          path="/shapes"
-          element={
-            <div>
-              <GrFormPreviousLink
-                className="goBackIcon"
-                onClick={() => navigate("/")}
-              />
-              <ShapesTool />
-            </div>
-          }
-        />
-        <Route
-          path="/closeIcons"
-          element={
-            <div>
-              <GrFormPreviousLink
-                className="goBackIcon"
-                onClick={() => navigate("/")}
-              />
-              <CloseTool />
-            </div>
-          }
-        />
-      </Routes>
+      {activeTool === "template" && (
+        <div>
+          <h4>Elements</h4>
+          <ElementsTemplate setActiveTool={setActiveTool} />
+        </div>
+      )}
+
+      {activeTool === "shapes" && (
+        <div>
+          <GrFormPreviousLink className="goBackIcon" onClick={goBack} />
+          <ShapesTool />
+        </div>
+      )}
+
+      {activeTool === "closeIcons" && (
+        <div>
+          <GrFormPreviousLink className="goBackIcon" onClick={goBack} />
+          <CloseTool />
+        </div>
+      )}
+      {activeTool === "text" && (
+        <div>
+          <GrFormPreviousLink className="goBackIcon" onClick={goBack} />
+          <TextTool />
+        </div>
+      )}
+      {activeTool === "Buttons" && (
+        <div>
+          <GrFormPreviousLink className="goBackIcon" onClick={goBack} />
+          <ButtonsTool />
+        </div>
+      )}
     </div>
   );
 };

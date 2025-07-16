@@ -3,15 +3,12 @@ import { ToolContext } from "../../context/ToolContext";
 import ColorsTool from "./ColorsTool";
 
 export const EditorToolsBarSetting = () => {
-  const { toolStates, OpenElementToolsBarValue } = useContext(ToolContext);
-
+  const { toolStates, selectedShape } = useContext(ToolContext);
   return (
     <div
-      className={`editorToolBarSlider elementSetting${
-        OpenElementToolsBarValue ? " sliderElementSettings" : ""
-      }`}
+      className="editorToolBarSlider elementSetting"
       style={{
-        display: toolStates === "colorFill" ? "flex" : "none",
+        right: toolStates === "colorFill" && selectedShape ? "75px" : "-370px",
       }}
     >
       <ColorsTool />

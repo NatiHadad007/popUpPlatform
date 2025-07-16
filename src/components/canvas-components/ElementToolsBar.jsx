@@ -54,8 +54,6 @@ const ElementToolsBar = () => {
     },
   ];
 
-  // console.log(selectedShape);
-
   useEffect(() => {
     if (!cornerStates || !OpenElementToolsBarValue) {
       setCornerStates(null);
